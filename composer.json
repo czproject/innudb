@@ -3,6 +3,9 @@
     "require": {
         "nette/nette": "2.0.10"
     },
+    "require-dev": {
+    	"nette/tester": "dev-master"
+    },
     "authors": [
         {
             "name": "Jan Pecha",
