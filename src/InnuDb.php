@@ -25,7 +25,7 @@
 			
 			if($this->path === FALSE)
 			{
-				throw new Exception('Data file not found in ' . $path);
+				throw new InnuDbException('Data file not found in ' . $path);
 			}
 		}
 		
@@ -59,7 +59,7 @@
 			{
 				if(!isset($data[$subset]))
 				{
-					throw new \Exception("Collection: data subset '$subset' missing.");
+					throw new InnuDbException("Collection: data subset '$subset' missing.");
 				}
 				
 				$data = $data[$subset];
@@ -69,5 +69,11 @@
 			
 			return $collection;
 		}
+	}
+	
+	
+	
+	class InnuDbException extends \RuntimeException
+	{
 	}
 
