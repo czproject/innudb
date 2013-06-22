@@ -1,5 +1,7 @@
-InnuDb - experimental PHP library for manipulation with array-based "database"
-==============================================================================
+InnuDb
+======
+
+Experimental PHP library for manipulation with array-based "database".
 
 ``` php
 $pathToFile = __DIR__ . '/data.php'; // see file content below
