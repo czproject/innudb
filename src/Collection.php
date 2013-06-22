@@ -159,6 +159,18 @@
 		
 		
 		/**
+		 * Alias for sort()
+		 * @param	array  [column => ASC, column => DESC]
+		 * @return	Collection
+		 */
+		public function order($sorting, $sort = NULL)
+		{
+			
+		}
+		
+		
+		
+		/**
 		 * @param	array  [column => value, ...]
 		 * @return	Collection
 		 */
