@@ -254,18 +254,18 @@
 			{
 				$hasConditions = TRUE;
 				// >, <, =, <=, >=
-				$column = $cond;
+				$column = $cond = trim($cond);
 				$op = '=';
 				$chars = substr($cond, -2, 2);
 				if($chars === '>=' || $chars === '<=')
 				{
 					$op = $chars;
-					$column = trim(substr($cond, 0, -2));
+					$column = rtrim(substr($cond, 0, -2));
 				}
 				elseif($chars[1] === '=' || $chars[1] === '<' || $chars[1] === '>')
 				{
 					$op = $chars[1];
-					$column = trim(substr($cond, 0, -1));
+					$column = rtrim(substr($cond, 0, -1));
 				}
 				
 				$this->formattedConditions[$column][$op][] = $value;
