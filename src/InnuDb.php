@@ -8,16 +8,25 @@
 	
 	class InnuDb
 	{
+		/** @var  string */
 		private $path;
 		
+		/** @var  array */
 		private $data;
 		
+		/** @var  bool @internal */
 		private $dataLoaded = FALSE;
 		
+		/** @var  Loader */
 		private $loader;
 		
 		
 		
+		/**
+		 * @param	Loader
+		 * @param	string
+		 * @throws	InnuDbException
+		 */
 		public function __construct(Loader $loader, $path)
 		{
 			$this->loader = $loader;
@@ -31,6 +40,9 @@
 		
 		
 		
+		/**
+		 * @return	string
+		 */
 		public function getPath()
 		{
 			return $this->path;
@@ -38,6 +50,9 @@
 		
 		
 		
+		/**
+		 * @return	mixed
+		 */
 		public function getData()
 		{
 			if(!$this->dataLoaded)
@@ -51,6 +66,11 @@
 		
 		
 		
+		/**
+		 * @param	string|NULL
+		 * @return	Collection
+		 * @throws	InnuDbException
+		 */
 		public function createCollection($subset = NULL)
 		{
 			$data = $this->getData();
