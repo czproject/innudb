@@ -25,7 +25,7 @@
 			
 			if($this->path === FALSE)
 			{
-				throw new InnuDbException('Data file not found in ' . $path);
+				throw new InnuDbException("Data file not found in $path");
 			}
 		}
 		
