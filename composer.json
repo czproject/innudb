@@ -1,0 +1,12 @@
+{
+    "name": "czproject/innudb",
+    "require": {
+        "nette/nette": "2.0.10"
+    },
+    "authors": [
+        {
+            "name": "Jan Pecha",
+            "email": "janpecha@email.cz"
+        }
+    ]
+}
