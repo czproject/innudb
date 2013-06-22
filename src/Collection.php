@@ -21,8 +21,8 @@
 		/** @var  int */
 		private $offset = 0;
 		
-		/** @var  array  [column => sorting] */
-		private $sorting = array();
+		/** @var  array|NULL  [column => sorting] */
+		private $sorting = NULL;
 		
 		/** @var  array  [column => value] */
 		private $conditions = array();
@@ -35,12 +35,6 @@
 		
 		/** @var  int|string  @internal */
 		private $iteratorKey;
-		
-		/** @var  string  @internal */
-		private $currentSort;
-		
-		/** @var  string  @internal */
-		private $currentColumn;
 		
 		/** @var  array  [column => cmp => [values]] */
 		private $formattedConditions;
@@ -149,7 +143,16 @@
 					$sorting => $sort !== NULL ? $sort : 'ASC',
 				);
 			}
-			$this->sorting = array_merge($this->sorting, $sorting);
+			
+			if($this->sorting === NULL)
+			{
+				$this->sorting = $sorting;
+			}
+			else
+			{
+				$this->sorting = array_merge($this->sorting, $sorting);
+			}
+			
 			return $this;
 		}
 		
@@ -188,21 +191,12 @@
 		 */
 		protected function sorting($data)
 		{
-			foreach($this->sorting as $column => $sort)
+			if($this->sorting === NULL)
 			{
-				if($sort === self::ASC)
-				{
-					$this->currentSort = $sort;
-				}
-				else // DESC
-				{
-					$this->currentSort = self::DESC;
-				}
-				
-				$this->currentColumn = $column;
-				uasort($data, array($this, '_sortCmp'));
+				return $data;
 			}
 			
+			uasort($data, array($this, '_sortCmp'));
 			return $data;
 		}
 		
@@ -215,29 +209,39 @@
 		 */
 		protected function _sortCmp($a, $b)
 		{
-			if($this->currentSort === self::DESC)
+			// -1   a < b
+			//  0   a = b
+			//  1   a > b
+			
+			foreach((array) $this->sorting as $column => $sorting)
 			{
-				$c = $a;
-				$a = $b;
-				$b = $c;
+				if(!isset($a[$column]) || !isset($b[$column]))
+				{
+					throw new CollectionException("Sort: column '{$column}' is missing in first or second item.");
+				}
+				
+				$sort = 0; // a = b
+				
+				if(is_string($a[$column]))
+				{
+					$sort = strcmp($a[$column], $b[$column]);
+				}
+				elseif($a[$column] < $b[$column])
+				{
+					$sort = -1;
+				}
+				elseif($a[$column] > $b[$column])
+				{
+					$sort = 1;
+				}
+				
+				if($sort) // sort != 0
+				{
+					return ($sorting !== self::ASC) ? ($sort * -1) : $sort;
+				}
 			}
 			
-			if(!is_array($a) || !is_array($b))
-			{
-				throw new \Exception('Sort: elements is not arrays');
-			}
-			
-			if(!isset($a[$this->currentColumn]) || !isset($b[$this->currentColumn]))
-			{
-				throw new \Exception("Sort: column '{$this->currentColumn}' is missing");
-			}
-			
-			if(is_string($a[$this->currentColumn]))
-			{
-				return strcmp($a[$this->currentColumn], $b[$this->currentColumn]);
-			}
-			
-			return $a[$this->currentColumn] < $b[$this->currentColumn];
+			return 0; // a = b, TODO: return -1 ? A < B ???
 		}
 		
 		
@@ -291,7 +295,7 @@
 			{
 				if(!isset($item[$column]))
 				{
-					throw new \Exception("Where: column '$column' missing in item");
+					throw new CollectionException("Where: column '$column' missing in item");
 				}
 				
 				foreach($ops as $op => $values)
@@ -398,5 +402,11 @@
 			$data = $this->getData();
 			return isset($data[$this->iteratorKey]);
 		}
+	}
+	
+	
+	
+	class CollectionException extends \RuntimeException
+	{
 	}
 
