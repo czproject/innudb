@@ -10,6 +10,9 @@ $data = include __DIR__ . '/data.php';
 
 $collection = new Collection($data['persons']);
 
+// Count
+Assert::same(3, $collection->getCount());
+
 
 // Get Data
 Assert::same($data['persons'], $collection->getData());
@@ -19,3 +22,5 @@ Assert::same($data['persons'], $collection->getData());
 $item = $collection->find('saxana');
 Assert::same('Saxana (movie)', $item['story']);
 
+
+Assert::false($collection->find('undefined-item'));
