@@ -248,9 +248,11 @@
 		protected function applyConditions(array $data)
 		{
 			$this->formattedConditions = array();
+			$hasConditions = FALSE;
 			
 			foreach($this->conditions as $cond => $value)
 			{
+				$hasConditions = TRUE;
 				// >, <, =, <=, >=
 				$column = $cond;
 				$op = '=';
@@ -267,6 +269,11 @@
 				}
 				
 				$this->formattedConditions[$column][$op][] = $value;
+			}
+			
+			if(!$hasConditions)
+			{
+				return $data;
 			}
 			
 			return array_filter($data, array($this, '_conditionCmp'));
