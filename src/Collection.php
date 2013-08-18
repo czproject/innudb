@@ -165,7 +165,7 @@
 		 */
 		public function order($sorting, $sort = NULL)
 		{
-			
+			return $this->sort($sorting, $sort);
 		}
 		
 		
