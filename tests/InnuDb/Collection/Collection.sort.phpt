@@ -9,12 +9,12 @@ require __DIR__ . '/../../../src/Collection.php';
 function fetchColumn($collection, $column)
 {
 	$item = $collection->fetch();
-	
+
 	if($item !== FALSE)
 	{
 		return $item[$column];
 	}
-	
+
 	return FALSE;
 }
 
@@ -23,12 +23,12 @@ $basicData = array(
 		'name' => 'Harry Potter',
 		'age' => 20,
 	),
-	
+
 	array(
 		'name' => 'Gandalf The White',
 		'age' => 2000,
 	),
-	
+
 	array(
 		'name' => 'Saxana',
 		'age' => 400,
@@ -60,32 +60,32 @@ $collection = new Collection(array(
 		'name' => 'Adam',
 		'age' => 198,
 	),
-	
+
 	array(
 		'name' => 'Adam',
 		'age' => 23,
 	),
-	
+
 	array(
 		'name' => 'Adam',
 		'age' => 28,
 	),
-	
+
 	array(
 		'name' => 'Adam',
 		'age' => 16,
 	),
-	
+
 	array(
 		'name' => 'Adam',
 		'age' => 80,
 	),
-	
+
 	array(
 		'name' => 'Adam',
 		'age' => 90,
 	),
-	
+
 	array(
 		'name' => 'Adam',
 		'age' => 70,

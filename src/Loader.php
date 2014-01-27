@@ -1,12 +1,12 @@
 <?php
 	/** CzProject Innu DB
-	 * 
+	 *
 	 * @author		Jan Pecha, <janpecha@email.cz>
 	 */
-	
+
 	namespace Cz\InnuDb;
 	use Nette;
-	
+
 	class Loader
 	{
 		protected $adapters = array(
@@ -15,9 +15,9 @@
 			'neon' => 'Nette\Config\Adapters\NeonAdapter',
 			'json' => 'Cz\InnuDb\Adapters\JsonAdapter',
 		);
-		
-		
-		
+
+
+
 		/**
 		 * Inspired by Nette Framework
 		 * @param	string
@@ -29,12 +29,12 @@
 			{
 				throw new Nette\FileNotFoundException("File '$file' is missing or is not readable.");
 			}
-			
+
 			return $this->getAdapter($file)->load($file);
 		}
-		
-		
-		
+
+
+
 		/**
 		 * Method from Nette Framework
 		 * @author	David Grudl, Nette Foundation, Nette Community
@@ -49,9 +49,9 @@
 				throw new Nette\IOException("Cannot write file '$file'.");
 			}
 		}
-		
-		
-		
+
+
+
 		/**
 		 * Method from Nette Framework
 		 * @author	David Grudl, Nette Foundation, Nette Community
@@ -64,9 +64,9 @@
 			$this->adapters[strtolower($extension)] = $adapter;
 			return $this;
 		}
-		
-		
-		
+
+
+
 		/**
 		 * Method from Nette Framework
 		 * @author	David Grudl, Nette Foundation, Nette Community
@@ -76,12 +76,12 @@
 		private function getAdapter($file)
 		{
 			$extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
-			
+
 			if(!isset($this->adapters[$extension]))
 			{
 				throw new Nette\InvalidArgumentException("Unknown file extension '$file'.");
 			}
-			
+
 			return is_object($this->adapters[$extension]) ? $this->adapters[$extension] : new $this->adapters[$extension];
 		}
 	}

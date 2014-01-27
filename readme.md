@@ -19,7 +19,7 @@ foreach($persons as $id => $item)
 //
 // $persons->limit(limit);
 // $persons->limit(limit, offset);
-// 
+//
 // $persons->sort('column'); // ASC is default
 // $persons->sort('column', 'ASC'); // or order('column')
 // $persons->sort('column', 'DESC'); // ASC is default
@@ -27,7 +27,7 @@ foreach($persons as $id => $item)
 //     'column' => 'ASC', // or 'DESC'
 // ));
 // $persons->sort('name')->sort('age', 'DESC'); // fluent interface
-// 
+//
 // $persons->where('column', 'value'); // column = value
 // $persons->where('column >', 'value'); // column > value
 // $persons->where('column <=', 'value'); // column <= value
