@@ -1,5 +1,8 @@
 {
     "name": "czproject/innudb",
+    "autoload": {
+        "classmap": ["src/"]
+    },
     "require": {
         "nette/nette": "2.0.10"
     },
