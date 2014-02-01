@@ -144,8 +144,7 @@ Assert::same(array('harry-potter'), $ids);
 
 // Test 10
 $coll = clone $collection;
-$coll->where('name') // bad where => ignoring
-	->where(array(
+$coll->where(array(
 		'       age     <        ' /*spaces*/ => 4000,
 	))
 	->where('age >', 400);
@@ -157,4 +156,10 @@ foreach($coll as $id => $item)
 }
 
 Assert::same(array('gandalf'), $ids);
+
+
+// Test 11
+Assert::exception(function() use ($coll) {
+	$coll->where('name');
+}, 'Cz\InnuDb\CollectionException');
 

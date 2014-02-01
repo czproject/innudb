@@ -183,7 +183,7 @@
 
 				if($args === 1) // only column
 				{
-					return $this;
+					throw new CollectionException("Missing parameter value, called only where('$column') without value");
 				}
 
 				$column = array(
