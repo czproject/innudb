@@ -305,7 +305,7 @@
 		{
 			foreach($this->formattedConditions as $column => $ops)
 			{
-				if(!isset($item[$column]))
+				if(!array_key_exists($column, $item))
 				{
 					throw new CollectionException("Where: column '$column' missing in item");
 				}

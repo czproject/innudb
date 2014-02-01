@@ -163,3 +163,20 @@ Assert::exception(function() use ($coll) {
 	$coll->where('name');
 }, 'Cz\InnuDb\CollectionException');
 
+
+// Test 12
+$coll = new Collection(array(
+	'first' => array(
+		'name' => 'First',
+		'description' => NULL,
+	),
+	'second' => array(
+		'name' => 'Second',
+		'description' => 'The second item',
+	),
+));
+
+$coll->where('description', NULL);
+
+Assert::same(array('first'), exportPrimary($coll));
+
