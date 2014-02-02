@@ -63,6 +63,24 @@ return array(
 
 ```
 
+NEON file
+---------
+
+```
+persons:
+    harry-potter:
+        name: Harry Potter
+        story: Harry Potter
+        age: 20
+
+    gandalf:
+        name: Gandalf The White
+        story: Lord of the Rings
+        age: 2000
+```
+
+-----------------------
+
 License: [New BSD License](license.md)
 <br>Author: Jan Pecha, http://janpecha.iunas.cz/
 
