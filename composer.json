@@ -1,5 +1,6 @@
 {
     "name": "czproject/innudb",
+    "description": "Experimental library for manipulation with array-based \"database\".",
     "autoload": {
         "classmap": ["src/"]
     },
