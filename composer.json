@@ -2,6 +2,7 @@
     "name": "czproject/innudb",
     "type": "library",
     "description": "Experimental library for manipulation with array-based \"database\".",
+    "license": ["BSD-3-Clause"],
     "autoload": {
         "classmap": ["src/"]
     },
