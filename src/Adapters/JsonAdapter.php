@@ -1,5 +1,6 @@
 <?php
-	/** CzProject Innu DB
+	/**
+	 * CzProject Innu DB
 	 *
 	 * @author		Jan Pecha, <janpecha@email.cz>
 	 */
